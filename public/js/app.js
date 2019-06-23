@@ -1916,18 +1916,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "add-guest",
   data: function data() {
     return {
       guest: {
-        first_name: '',
-        last_name: '',
-        email: '',
-        phone_number: '',
-        gender: '',
-        address: ''
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+        gender: "",
+        address: ""
       },
       options: [{
         value: "male",
@@ -1946,14 +1983,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.validateForm() == true) {
-        axios.post(route('guest.store', 'frontend'), this.$data.guest).then(function (response) {
+        axios.post(route("guest.store", "frontend"), this.$data.guest).then(function (response) {
           _this.clearForm();
 
-          _this.$root.$emit('get-guests');
+          _this.$root.$emit("get-guests");
 
-          $('#addGuest').modal('hide');
-          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Success!", "Guest Added", 'success');
+          $("#addGuest").modal("hide");
+          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Success!", "Guest Added", "success");
         })["catch"](function (error) {
+          _this.errors = error.response.data.errors;
           console.log(error);
         });
       }
@@ -2143,6 +2181,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "guests-list",
@@ -2169,13 +2257,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getGuests();
-    this.$root.$on('get-guests', this.getGuests);
+    this.$root.$on("get-guests", this.getGuests);
   },
   methods: {
     getGuests: function getGuests() {
       var _this = this;
 
-      axios.get(route('guest.list')).then(function (response) {
+      axios.get(route("guest.list")).then(function (response) {
         _this.guests = response.data;
       })["catch"](function (error) {
         console.log(error);
@@ -2187,8 +2275,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.patch(this.update_route, this.$data.guest_data).then(function (response) {
         _this2.getGuests();
 
-        $('#updateGuest').modal('hide');
-        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Success!", "Guest Updated", 'info');
+        $("#updateGuest").modal("hide");
+        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default.a.fire("Success!", "Guest Updated", "info");
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2202,29 +2290,29 @@ __webpack_require__.r(__webpack_exports__);
       this.guest_data.address = null;
     },
     showAddModal: function showAddModal() {
-      $('#addGuest').modal('show');
+      $("#addGuest").modal("show");
     },
     showUpdateModal: function showUpdateModal(guest) {
       this.guest_data = guest;
-      $('#updateGuest').modal('show');
-      this.update_route = route('guest.update', [guest.id, 'frontend']);
+      $("#updateGuest").modal("show");
+      this.update_route = route("guest.update", [guest.id, "frontend"]);
     },
     deleteGuest: function deleteGuest(id) {
       var _this3 = this;
 
       swal.fire({
-        title: 'Are you sure?',
-        text: 'This will delete guest data',
-        type: 'warning',
+        title: "Are you sure?",
+        text: "This will delete guest data",
+        type: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: 'Yes, delete it!',
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
         html: false,
         showLoaderOnConfirm: true
       }).then(function (result) {
         if (result.value) {
-          axios["delete"](route('guest.delete', id)).then(function (response) {
-            swal.fire('Deleted', response.data, 'success');
+          axios["delete"](route("guest.delete", id)).then(function (response) {
+            swal.fire("Deleted", response.data, "success");
 
             _this3.getGuests();
           });
@@ -40535,7 +40623,7 @@ var render = function() {
                     staticClass: "alert alert-danger",
                     attrs: { role: "alert" }
                   },
-                  [_vm._v("\n            " + _vm._s(error) + "\n        ")]
+                  [_vm._v(_vm._s(error))]
                 )
               }),
               0
@@ -40668,6 +40756,8 @@ var render = function() {
     _vm._v(" "),
     _c("table", { staticClass: "table table-striped table-bordered" }, [
       _c("thead", [
+        _c("th", { staticClass: "text-center align-middle" }, [_vm._v("#")]),
+        _vm._v(" "),
         _c("th", { staticClass: "text-center align-middle" }, [
           _vm._v("Firstname")
         ]),
@@ -40722,12 +40812,16 @@ var render = function() {
             ? _c("tr", [
                 _c(
                   "td",
-                  { staticClass: "text-center", attrs: { colspan: "7" } },
+                  { staticClass: "text-center", attrs: { colspan: "8" } },
                   [_vm._v("No Guests Found")]
                 )
               ])
-            : _vm._l(_vm.guests, function(guest) {
+            : _vm._l(_vm.guests, function(guest, index) {
                 return _c("tr", { key: guest.id }, [
+                  _c("td", { staticClass: "text-center" }, [
+                    _vm._v(_vm._s(index + 1))
+                  ]),
+                  _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(guest.first_name))]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(guest.last_name))]),

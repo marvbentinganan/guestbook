@@ -45,12 +45,12 @@
         <div class="form-group col-md-4">
             <label for="gender">Gender</label>
             <select id="gender" name="gender" class="@error('gender') is-invalid @enderror form-control">
-                @if ($guest->gender == 'male')
-                    <option selected value="male">Male</option>
-                    <option value="female">Female</option>
+                @if ($guest->gender == 'Male')
+                    <option selected value="Male">Male</option>
+                    <option value="Female">Female</option>
                 @else
-                    <option value="male">Male</option>
-                    <option selected value="female">Female</option>
+                    <option value="Male">Male</option>
+                    <option selected value="Female">Female</option>
                 @endif
             </select>
             @error('gender')

@@ -40,8 +40,8 @@
         <div class="form-group col-md-4">
             <label for="gender">Gender</label>
             <select id="gender" name="gender" class="@error('gender') is-invalid @enderror form-control">
-                <option selected value="male">Male</option>
-                <option value="female">Female</option>
+                <option selected value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
             @error('gender')
             <div class="alert alert-danger">{{ $message }}</div>

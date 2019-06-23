@@ -17,6 +17,7 @@
     @endif
     <table class="table table-striped table-bordered">
         <thead>
+            <th class="text-center align-middle">#</th>
             <th class="text-center align-middle">Firstname</th>
             <th class="text-center align-middle">Lastname</th>
             <th class="text-center align-middle">Email</th>
@@ -30,11 +31,12 @@
         <tbody>
             @if($guests->count() == 0)
             <tr>
-                <td class="text-center" colspan="7">No Guests Found</td>
+                <td class="text-center" colspan="8">No Guests Found</td>
             </tr>
             @else
-            @foreach ($guests as $guest)
+            @foreach ($guests as $key => $guest)
             <tr>
+                <td class="text-center">{{ ++$key }}</td>
                 <td>{{ $guest->first_name }}</td>
                 <td>{{ $guest->last_name }}</td>
                 <td>{{ $guest->email }}</td>

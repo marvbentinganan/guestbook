@@ -67,16 +67,18 @@ class GuestController extends Controller
                 return redirect()->back()
                     ->withErrors($validator)
                     ->withInput();
+            } else {
+                return response()->json($validator->errors(), 422);
             }
+        } else {
+            $guest = Guest::create($request->all());
+
+            if ($type == 'backend') {
+                return redirect()->route('guests', 'backend')->with('success', "Guest Added Successfully!");
+            }
+
+            return response()->json($guest);
         }
-
-        $guest = Guest::create($request->all());
-
-        if($type == 'backend'){
-            return redirect()->route('guests', 'backend')->with('success', "Guest Added Successfully!");
-        }
-
-        return response()->json($guest);
     }
 
     /**
